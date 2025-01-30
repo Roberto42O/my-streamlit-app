@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-st.title("Przykładowa aplikacja z wykresem matplotlib")
+st.title("test matplotlib")
 
 # Suwak do wyboru liczby wierszy
 num_rows = st.slider("Liczba wierszy danych do wygenerowania:", 5, 100, 20)
@@ -33,6 +33,4 @@ if st.button("Narysuj wykres z matplotlib"):
     # Wyświetlamy wykres za pomocą Streamlit
     st.pyplot(fig)
 
-st.write("""
-Możesz w podobny sposób korzystać z dowolnych funkcji wykresów (liniowych, słupkowych, histogramów itd.) biblioteki **matplotlib**.
-""")
+
