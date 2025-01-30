@@ -13,7 +13,7 @@ Ta aplikacja pomoże Ci wytresować kazachów.
 # Suwak do wyboru liczby wierszy
 num_rows = st.slider("Liczba wierszy danych do wygenerowania:", 5, 100, 10)
 
-# Generowanie przykładowych danych
+# Generowanie przykładowych danych (3 kolumny: X, Y, Z)
 random_data = np.random.randn(num_rows, 3)
 df = pd.DataFrame(random_data, columns=["X", "Y", "Z"])
 
@@ -21,22 +21,16 @@ df = pd.DataFrame(random_data, columns=["X", "Y", "Z"])
 st.write("Oto wygenerowane dane:")
 st.dataframe(df)
 
-# Dodanie przycisku, który obliczy średnie i narysuje wykres
-if st.button("Oblicz średnie i narysuj wykres"):
-    mean_values = df.mean()
-    
-    st.write("Średnie wartości w kolumnach:")
-    st.write(mean_values)  # wyświetlamy zwykłą tabelę/Series
+# Dodaj przycisk, po którego kliknięciu narysujemy wykres liniowy
+if st.button("Pokaż wykres liniowy"):
+    st.write("**Wykres liniowy wartości X, Y oraz Z**")
+    # Rysowanie wykresu liniowego – każda kolumna (X, Y, Z) będzie osobną linią
+    st.line_chart(df)
 
-    # Konwersja do DataFrame, aby można było wyświetlić w formie wykresu
-    mean_df = pd.DataFrame(mean_values, columns=["Mean"])
-    st.bar_chart(mean_df)
-
-# Dodatkowe wskazówki
 st.write("#### Jak dalej rozbudować aplikację?")
 st.write("""
-- Dodaj obsługę plików (np. wczytywanie CSV).
-- Twórz inne rodzaje wykresów (wykres liniowy, kołowy itp.).
-- Pozwól użytkownikowi filtrować dane według parametrów.
-- Wykorzystaj modele Machine Learning do predykcji i pokaż wyniki w przejrzysty sposób.
+- Możesz dodać filtrację danych przed wyświetleniem (np. wybór zakresu wartości).
+- Dodaj wykres słupkowy lub inny rodzaj wykresu, by przedstawić przetworzone dane (np. średnie, sumy).
+- Pozwól użytkownikowi wczytywać własne pliki (CSV/Excel) i wyświetlać ich zawartość.
+- Wykorzystaj modele Machine Learning do predykcji i wizualizacji wyników.
 """)
