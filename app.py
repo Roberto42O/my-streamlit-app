@@ -1,36 +1,38 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
 
-# Tytuł i nagłówek aplikacji
-st.title("TEST1")
-
-st.header("Krótka prezentacja danych")
-st.write("""
-Ta aplikacja pomoże Ci wytresować kazachów.
-""")
+st.title("Przykładowa aplikacja z wykresem matplotlib")
 
 # Suwak do wyboru liczby wierszy
-num_rows = st.slider("Liczba wierszy danych do wygenerowania:", 5, 100, 10)
+num_rows = st.slider("Liczba wierszy danych do wygenerowania:", 5, 100, 20)
 
-# Generowanie przykładowych danych (3 kolumny: X, Y, Z)
-random_data = np.random.randn(num_rows, 3)
-df = pd.DataFrame(random_data, columns=["X", "Y", "Z"])
+# Generowanie przykładowych danych
+random_data = np.random.randn(num_rows, 2)  # 2 kolumny
+df = pd.DataFrame(random_data, columns=["X", "Y"])
 
-# Wyświetlenie tabeli z danymi
-st.write("Oto wygenerowane dane:")
+st.write("Podgląd danych:")
 st.dataframe(df)
 
-# Dodaj przycisk, po którego kliknięciu narysujemy wykres liniowy
-if st.button("Pokaż wykres liniowy"):
-    st.write("**Wykres liniowy wartości X, Y oraz Z**")
-    # Rysowanie wykresu liniowego – każda kolumna (X, Y, Z) będzie osobną linią
-    st.line_chart(df)
+# Dodaj przycisk, żeby rysować wykres
+if st.button("Narysuj wykres z matplotlib"):
+    st.write("**Wykres punktowy (Scatter Plot) z biblioteki matplotlib**")
 
-st.write("#### Jak dalej rozbudować aplikację?")
+    # Tworzymy figurę i osie
+    fig, ax = plt.subplots()
+
+    # Rysowanie wykresu punktowego
+    ax.scatter(df["X"], df["Y"], color="blue", alpha=0.7)
+
+    # Dodajemy etykiety osi
+    ax.set_xlabel("X")
+    ax.set_ylabel("Y")
+    ax.set_title("Losowe punkty X vs Y")
+
+    # Wyświetlamy wykres za pomocą Streamlit
+    st.pyplot(fig)
+
 st.write("""
-- Możesz dodać filtrację danych przed wyświetleniem (np. wybór zakresu wartości).
-- Dodaj wykres słupkowy lub inny rodzaj wykresu, by przedstawić przetworzone dane (np. średnie, sumy).
-- Pozwól użytkownikowi wczytywać własne pliki (CSV/Excel) i wyświetlać ich zawartość.
-- Wykorzystaj modele Machine Learning do predykcji i wizualizacji wyników.
+Możesz w podobny sposób korzystać z dowolnych funkcji wykresów (liniowych, słupkowych, histogramów itd.) biblioteki **matplotlib**.
 """)
