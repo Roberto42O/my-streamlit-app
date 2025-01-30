@@ -2,13 +2,11 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
-st.title("Moja pierwsza aplikacja w Streamlit (z GitHuba)")
+st.title("TEST 1")
 
 st.header("Krótka prezentacja danych")
 st.write("""
-Witaj! Ta aplikacja demonstruje, jak w prosty sposób możesz 
-udostępnić kod w Pythonie w formie aplikacji webowej, 
-korzystając z **Streamlit** i **GitHub**.
+Ta aplikacja pomoże Ci wytresować kazachów
 """)
 
 num_rows = st.slider("Liczba wierszy danych do wygenerowania:", 5, 100, 10)
